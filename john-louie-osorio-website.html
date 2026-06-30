@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>John Louie N. Osorio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=Share+Tech+Mono&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0b10;
+    --bg2:#0d1117;
+    --grid:#1a2230;
+    --cyan:#00f6ff;
+    --magenta:#ff2bd6;
+    --yellow:#f7ff2b;
+    --violet:#8a4dff;
+    --text:#dce8ee;
+    --muted:#7a8a9a;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Rajdhani',sans-serif;
+    position:relative;
+    overflow-x:hidden;
+  }
+  /* perspective grid backdrop */
+  body::before{
+    content:"";
+    position:fixed; inset:0; z-index:0;
+    background-image:
+      linear-gradient(transparent 95%, rgba(0,246,255,0.06) 95%),
+      linear-gradient(90deg, transparent 95%, rgba(0,246,255,0.06) 95%);
+    background-size:42px 42px;
+    pointer-events:none;
+  }
+  body::after{
+    content:"";
+    position:fixed; inset:0; z-index:0;
+    background:radial-gradient(ellipse at 50% -10%, rgba(138,77,255,0.18), transparent 55%),
+               radial-gradient(ellipse at 100% 100%, rgba(255,43,214,0.12), transparent 50%);
+    pointer-events:none;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+  a{color:inherit;}
+  .wrap{max-width:960px; margin:0 auto; padding:0 28px; position:relative; z-index:1;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    backdrop-filter:blur(10px);
+    background:rgba(10,11,16,0.75);
+    border-bottom:1px solid rgba(0,246,255,0.25);
+  }
+  nav .wrap{display:flex; justify-content:space-between; align-items:center; height:64px;}
+  .brand{font-family:'Orbitron'; font-weight:800; font-size:1.05rem; letter-spacing:.04em; color:var(--cyan); text-shadow:0 0 8px rgba(0,246,255,0.6);}
+  .brand span{color:var(--magenta); text-shadow:0 0 8px rgba(255,43,214,0.6);}
+  nav ul{display:flex; gap:30px; list-style:none; margin:0; padding:0; font-size:.88rem; font-weight:600; text-transform:uppercase; letter-spacing:.06em;}
+  nav a{text-decoration:none; opacity:.7; transition:opacity .2s, color .2s;}
+  nav a:hover, nav a:focus-visible{opacity:1; color:var(--cyan);}
+  nav a:focus-visible{outline:2px solid var(--cyan); outline-offset:4px; border-radius:2px;}
+
+  /* ---------- HERO ---------- */
+  header.hero{padding:100px 0 80px; position:relative;}
+  .eyebrow{
+    font-family:'Share Tech Mono'; font-size:.95rem; color:var(--yellow); letter-spacing:.12em;
+    text-transform:uppercase; margin-bottom:14px; display:inline-block;
+  }
+  .eyebrow::before{content:"// ";}
+  h1.name{
+    font-family:'Orbitron'; font-weight:800; letter-spacing:.01em;
+    font-size:clamp(2.1rem, 6vw, 3.8rem); line-height:1.08; margin:0 0 22px;
+    color:#fff;
+    text-shadow:0 0 4px rgba(255,255,255,0.3), 0 0 22px rgba(0,246,255,0.45);
+  }
+  h1.name .mid{color:var(--magenta); text-shadow:0 0 4px rgba(255,255,255,0.2), 0 0 22px rgba(255,43,214,0.55);}
+  .tagline{font-size:1.1rem; color:var(--muted); max-width:540px; line-height:1.6; margin-bottom:38px; font-weight:500;}
+
+  .stamp-row{display:flex; gap:14px; flex-wrap:wrap;}
+  .stamp{
+    border:1.5px solid var(--cyan); border-radius:2px;
+    padding:9px 20px; font-size:.82rem; font-weight:700; font-family:'Share Tech Mono';
+    text-transform:uppercase; letter-spacing:.08em;
+    background:rgba(0,246,255,0.06); color:var(--cyan);
+    box-shadow:0 0 10px rgba(0,246,255,0.25) inset;
+  }
+  .stamp.magenta{border-color:var(--magenta); color:var(--magenta); background:rgba(255,43,214,0.06); box-shadow:0 0 10px rgba(255,43,214,0.25) inset;}
+  .stamp.yellow{border-color:var(--yellow); color:var(--yellow); background:rgba(247,255,43,0.06); box-shadow:0 0 10px rgba(247,255,43,0.2) inset;}
+
+  /* Signature: HUD status panel */
+  .report-card{
+    position:absolute; right:28px; top:90px; width:240px;
+    background:rgba(13,17,23,0.85); border:1.5px solid var(--cyan); border-radius:4px;
+    padding:18px 18px 14px;
+    box-shadow:0 0 24px rgba(0,246,255,0.25), 0 0 0 1px rgba(0,246,255,0.1) inset;
+    font-family:'Share Tech Mono';
+  }
+  .report-card .rc-head{font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color:var(--yellow); margin-bottom:12px;}
+  .report-card .rc-head::before{content:"● "; color:#3dff8a;}
+  .report-card .rc-row{display:flex; justify-content:space-between; font-size:.8rem; padding:6px 0; border-bottom:1px dashed rgba(0,246,255,0.2); color:var(--muted);}
+  .report-card .rc-row b{color:var(--cyan); font-weight:400;}
+  @media (max-width:760px){ .report-card{display:none;} }
+
+  /* ---------- SECTION SHARED ---------- */
+  section{padding:64px 0;}
+  .section-head{display:flex; align-items:baseline; gap:16px; margin-bottom:36px;}
+  .section-head h2{
+    font-family:'Orbitron'; font-size:1.5rem; font-weight:700; margin:0; letter-spacing:.03em;
+    color:#fff; text-shadow:0 0 14px rgba(0,246,255,0.3);
+  }
+  .section-head .tag{
+    font-family:'Share Tech Mono'; font-size:.85rem; color:var(--magenta); letter-spacing:.05em;
+  }
+  hr.rule{border:none; border-top:1.5px solid rgba(0,246,255,0.25); margin:0 0 36px;}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:40px;}
+  .about-grid p{line-height:1.8; color:var(--text); font-size:1.02rem; font-weight:500;}
+  .fact-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px; font-family:'Share Tech Mono';}
+  .fact-list li{display:flex; gap:12px; font-size:.9rem; border-left:2px solid var(--cyan); padding-left:12px;}
+  .fact-list .k{font-weight:700; min-width:100px; color:var(--cyan); text-transform:uppercase; letter-spacing:.04em;}
+  @media (max-width:700px){ .about-grid{grid-template-columns:1fr;} }
+
+  /* ---------- SUBJECTS ---------- */
+  .subject-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:16px;}
+  .subject-card{
+    border:1.5px solid rgba(0,246,255,0.3); border-radius:3px; padding:18px 18px 16px;
+    background:rgba(13,17,23,0.6); transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+  }
+  .subject-card:hover{transform:translateY(-4px); border-color:var(--magenta); box-shadow:0 0 18px rgba(255,43,214,0.25);}
+  .subject-card .period{font-family:'Share Tech Mono'; font-weight:700; color:var(--yellow); font-size:.78rem; text-transform:uppercase; letter-spacing:.1em;}
+  .subject-card h3{font-family:'Orbitron'; margin:8px 0 8px; font-size:1rem; color:#fff;}
+  .subject-card p{margin:0; font-size:.85rem; color:var(--muted); line-height:1.55;}
+
+  /* ---------- GOALS / TIMELINE ---------- */
+  .timeline{position:relative; padding-left:26px; border-left:2px dashed rgba(0,246,255,0.25);}
+  .t-item{position:relative; margin-bottom:32px;}
+  .t-item:last-child{margin-bottom:0;}
+  .t-item::before{
+    content:""; position:absolute; left:-32px; top:4px; width:11px; height:11px;
+    background:var(--magenta); border-radius:50%; border:2px solid var(--bg);
+    box-shadow:0 0 10px var(--magenta), 0 0 0 2px var(--magenta);
+  }
+  .t-item h3{font-family:'Orbitron'; font-size:1rem; margin:0 0 4px; color:#fff;}
+  .t-item span.when{font-family:'Share Tech Mono'; color:var(--cyan); font-weight:700; font-size:.78rem; margin-left:10px; text-transform:uppercase; letter-spacing:.06em;}
+  .t-item p{margin:6px 0 0; color:var(--muted); font-size:.92rem; line-height:1.6; max-width:540px;}
+
+  /* ---------- CONTACT ---------- */
+  .contact-box{
+    border:1.5px solid var(--cyan); border-radius:4px; padding:50px 36px;
+    background:rgba(13,17,23,0.7); box-shadow:0 0 30px rgba(0,246,255,0.15);
+    text-align:center;
+  }
+  .contact-box h2{font-family:'Orbitron'; font-size:1.7rem; margin:0 0 12px; color:#fff; text-shadow:0 0 16px rgba(0,246,255,0.4);}
+  .contact-box .sub{color:var(--muted); margin:0 0 36px; font-size:1rem;}
+
+  .contact-links{display:grid; grid-template-columns:repeat(2,1fr); gap:18px; max-width:600px; margin:0 auto 18px;}
+  .contact-links a{
+    font-family:'Orbitron'; font-weight:700; font-size:1.05rem; text-decoration:none;
+    text-transform:uppercase; letter-spacing:.05em;
+    border:2px solid var(--cyan); border-radius:2px; padding:26px 18px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;
+    color:var(--cyan); background:rgba(0,246,255,0.05);
+    transition:background .2s, color .2s, box-shadow .2s, transform .15s;
+    position:relative;
+  }
+  .contact-links a .icon{font-size:1.6rem;}
+  .contact-links a .label{font-size:.95rem;}
+  .contact-links a:hover{background:var(--cyan); color:#031014; box-shadow:0 0 28px rgba(0,246,255,0.6); transform:translateY(-3px);}
+  .contact-links a.fb{border-color:var(--violet); color:var(--violet); background:rgba(138,77,255,0.05);}
+  .contact-links a.fb:hover{background:var(--violet); color:#0a0612; box-shadow:0 0 28px rgba(138,77,255,0.6);}
+  .contact-links a.ig{border-color:var(--magenta); color:var(--magenta); background:rgba(255,43,214,0.05);}
+  .contact-links a.ig:hover{background:var(--magenta); color:#1a0212; box-shadow:0 0 28px rgba(255,43,214,0.6);}
+  .contact-links a:focus-visible{outline:2px solid var(--yellow); outline-offset:3px;}
+  .back-top{display:block; text-align:center; font-family:'Share Tech Mono'; color:var(--muted); font-size:.85rem; text-decoration:none; margin-top:10px;}
+  .back-top:hover{color:var(--cyan);}
+  @media (max-width:600px){ .contact-links{grid-template-columns:1fr;} }
+
+  footer{padding:36px 0 50px; text-align:center; color:var(--muted); font-size:.8rem; font-family:'Share Tech Mono'; letter-spacing:.04em;}
+
+  /* fade-in on load */
+  .fade-up{opacity:0; transform:translateY(14px); animation:fadeUp .7s ease forwards;}
+  @keyframes fadeUp{to{opacity:1; transform:translateY(0);}}
+  .d1{animation-delay:.05s;} .d2{animation-delay:.15s;} .d3{animation-delay:.25s;} .d4{animation-delay:.35s;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">JL<span>.</span>OSORIO</div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#subjects">Subjects</a></li>
+      <li><a href="#goals">Goals</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="fade-up d1 eyebrow">Identity loaded</div>
+    <h1 class="name fade-up d2">John Louie N. <span class="mid">Osorio</span></h1>
+    <p class="tagline fade-up d3">16 years old, currently in Grade 10 — figuring out what I'm good at, one school year at a time. Welcome to my little corner of the net.</p>
+    <div class="stamp-row fade-up d4">
+      <span class="stamp">Grade 10</span>
+      <span class="stamp magenta">Age 16</span>
+      <span class="stamp yellow">Student</span>
+    </div>
+
+    <div class="report-card fade-up d4">
+      <div class="rc-head">Status: Online</div>
+      <div class="rc-row"><span>Name</span><b>J. Osorio</b></div>
+      <div class="rc-row"><span>Grade</span><b>10</b></div>
+      <div class="rc-row"><span>Age</span><b>16</b></div>
+      <div class="rc-row" style="border-bottom:none;"><span>Mode</span><b>Active</b></div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head"><h2>ABOUT_ME</h2><span class="tag">// personal log</span></div>
+    <hr class="rule">
+    <div class="about-grid">
+      <p>I'm John Louie N. Osorio, a 16-year-old high school student currently in Grade 10. I'm still in the middle of figuring out my path, but I enjoy learning new things, taking on challenges, and slowly building skills that I hope will matter later on. This site is a small, honest snapshot of where I'm at right now.</p>
+      <ul class="fact-list">
+        <li><span class="k">Name</span> John Louie N. Osorio</li>
+        <li><span class="k">Age</span> 16 years old</li>
+        <li><span class="k">Level</span> Grade 10, High School</li>
+        <li><span class="k">Status</span> Studying & growing</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="subjects">
+  <div class="wrap">
+    <div class="section-head"><h2>CURRENT_LOAD</h2><span class="tag">// this year's lineup</span></div>
+    <hr class="rule">
+    <div class="subject-grid">
+      <div class="subject-card">
+        <div class="period">Core</div>
+        <h3>Mathematics</h3>
+        <p>Working through problem-solving and building a stronger foundation for the years ahead.</p>
+      </div>
+      <div class="subject-card">
+        <div class="period">Core</div>
+        <h3>Science</h3>
+        <p>Curious about how things work — from basic concepts to bigger questions.</p>
+      </div>
+      <div class="subject-card">
+        <div class="period">Core</div>
+        <h3>English</h3>
+        <p>Improving how I read, write, and express ideas clearly.</p>
+      </div>
+      <div class="subject-card">
+        <div class="period">Core</div>
+        <h3>Filipino</h3>
+        <p>Strengthening communication and appreciation of our language and culture.</p>
+      </div>
+      <div class="subject-card">
+        <div class="period">Elective</div>
+        <h3>Computer / ICT</h3>
+        <p>Where I'm slowly learning how websites like this one come together.</p>
+      </div>
+      <div class="subject-card">
+        <div class="period">Elective</div>
+        <h3>P.E. & Health</h3>
+        <p>Staying active and learning to take care of myself, on and off the field.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="goals">
+  <div class="wrap">
+    <div class="section-head"><h2>ROADMAP</h2><span class="tag">// small steps, real plans</span></div>
+    <hr class="rule">
+    <div class="timeline">
+      <div class="t-item">
+        <h3>Finish Grade 10 strong <span class="when">this year</span></h3>
+        <p>Keep my grades steady and finish junior high with something to be proud of.</p>
+      </div>
+      <div class="t-item">
+        <h3>Pick a senior high track <span class="when">next year</span></h3>
+        <p>Explore my options and choose a path that actually fits where I want to go.</p>
+      </div>
+      <div class="t-item">
+        <h3>Build more skills outside class <span class="when">ongoing</span></h3>
+        <p>Keep learning things on my own — like building this website — alongside regular schoolwork.</p>
+      </div>
+      <div class="t-item">
+        <h3>Figure out what's next after high school <span class="when">long term</span></h3>
+        <p>Still open-minded, but excited to see where things lead.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-box">
+      <h2>CONNECT</h2>
+      <p class="sub">Pick a channel — happy to talk about school, projects, or anything else.</p>
+      <div class="contact-links">
+        <a class="gm" href="mailto:igoplouie0@gmail.com">
+          <span class="icon">✉</span><span class="label">Gmail</span>
+        </a>
+        <a class="fb" href="https://www.facebook.com/share/1BY387Q4Sq/" target="_blank" rel="noopener">
+          <span class="icon">f</span><span class="label">Facebook</span>
+        </a>
+        <a class="ig" href="https://www.instagram.com/louie.json?igsh=MXdtZjkzdXdybWF2cA==" target="_blank" rel="noopener">
+          <span class="icon">◎</span><span class="label">Instagram</span>
+        </a>
+      </div>
+      <a class="back-top" href="#about">// back to top</a>
+    </div>
+  </div>
+</section>
+
+<footer>built by John Louie N. Osorio · Grade 10 · 16 years old</footer>
+
+</body>
+</html>
